@@ -63,4 +63,5 @@ insert into Transactions values
 
 
 
+select * from Transactions
 

@@ -30,3 +30,5 @@ group by customer_id
 having count(account_id)>1
 
 select DIFFERENCE(amount(deposit,withdrawl)) from transactions
+
+select * from Transactions

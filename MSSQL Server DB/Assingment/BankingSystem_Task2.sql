@@ -36,3 +36,8 @@ where balance<1000
 
 select concat(first_name,' ',last_name)as Full_name,address from customers
 where address not like '%Texas%'
+
+
+
+
+select * from Transactions
