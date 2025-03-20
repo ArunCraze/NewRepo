@@ -24,7 +24,8 @@ transaction_type varchar(25) check(transaction_type in('deposit','withdrawl','tr
 amount decimal(15,2) default 00.0,
 transaction_date datetime not null
 );
-select * from accounts
+select * from Transactions
+-- Insert at least 10 sample records into each of the following tables.
 insert into customers values
 ('John', 'Doe', '1990-05-12', 'john.doe@example.com', '9876543210', '123 Main St, New York'),
 ('Jane', 'Smith', '1985-09-25', 'jane.smith@example.com', '9876543211', '456 Elm St, California'),
