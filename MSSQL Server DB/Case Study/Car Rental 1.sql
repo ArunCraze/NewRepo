@@ -35,3 +35,7 @@ leaseId int not null,
 paymentDate date,
 amount decimal(5,2),
 foreign key(leaseID) references lease(leaseID))
+
+drop database Car_Rental
+
+use model
