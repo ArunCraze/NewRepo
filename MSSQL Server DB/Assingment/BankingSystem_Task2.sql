@@ -17,8 +17,7 @@ where customer_id=5;
 --Write a SQL query to Combine first and last names of customers as a full_name. 
 select concat(first_name,' ',last_name)as Full_name from customers
 
---Write a SQL query to remove accounts with a balance of zero where the account 
-type is savings. 
+--Write a SQL query to remove accounts with a balance of zero where the account type is savings. 
 delete from Accounts where balance=0 AND account_type='savings'
 
 --Write a SQL query to Find customers living in a specific city. 
