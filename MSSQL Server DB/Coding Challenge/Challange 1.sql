@@ -80,48 +80,50 @@ SELECT name FROM victim
 WHERE name LIKE '%Doe%'
 UNION ALL
 SELECT name FROM Suspect
-WHERE name LIKE '%Doe%';
+WHERE name LIKE '%Doe%'
 
 SELECT v.name, c.status FROM victim v
-JOIN crime c ON v.crimeID = c.crimeID
+JOIN crime c ON v.crimeID=c.crimeID
 WHERE c.status IN('open','closed')
 UNION
 SELECT s.name, c.status FROM Suspect s
-JOIN Crime c ON s.crimeID = c.crimeID
+JOIN Crime c ON s.crimeID=c.crimeID
 WHERE c.status IN('open','closed')
 
 SELECT DISTINCT c.incidentType FROM crime c
-JOIN victim v ON c.crimeID = v.crimeID
+JOIN victim v ON c.crimeID= v.crimeID
 WHERE v.age IN (30, 35)
 UNION
 SELECT DISTINCT c.incidentType FROM crime c
-JOIN suspect s ON c.crimeID = s.crimeID
+JOIN suspect s ON c.crimeID=s.crimeID
 WHERE s.age IN (30, 35)
 
 SELECT v.name, c.incidenttype FROM victim v
-JOIN crime c ON v.crimeID = c.crimeID
+JOIN crime c ON v.crimeID=c.crimeID
 WHERE c.incidenttype='robbery'
 UNION
 SELECT s.name, c.incidenttype FROM Suspect s
-JOIN Crime c ON s.crimeID = c.crimeID
+JOIN Crime c ON s.crimeID=c.crimeID
 WHERE c.incidenttype='robbery'
 
 SELECT IncidentType FROM crime
-WHERE status = 'open'
+WHERE status='open'
 GROUP BY IncidentType
-HAVING COUNT(*) > 1;
+HAVING COUNT(*)>1;
 
-SELECT c.* FROM crime c
-JOIN suspect s ON c.crimeID = s.crimeID
-JOIN victim v ON s.name = v.name
+SELECT c.crimeID,c.incidentType,c.status FROM crime c 
+JOIN suspect s ON c.crimeID=c.crimeID 
+JOIN victim v ON s.name=v.name 
+GROUP BY c.crimeID,c.incidentType,c.status;
+
 
 select c.crimeID,c.incidentType,v.name as VictimName,s.name as SuspectName from crime c
-join victim v on c.crimeID = v.crimeID
-join suspect s on c.crimeID = s.crimeID;
+join victim v on c.crimeID=v.crimeID
+join suspect s on c.crimeID=s.crimeID;
 
-SELECT c.* FROM Crime c
-JOIN suspect s ON c.crimeID = s.crimeID
-WHERE s.age > (SELECT MAX(v.age) FROM victim v WHERE v.crimeID = c.crimeID) 
+SELECT c.* FROM crime c
+JOIN suspect s ON c.crimeID=s.crimeID
+WHERE s.age > (SELECT MAX(v.age) FROM victim v WHERE v.crimeID=c.crimeID) 
 
 SELECT name,COUNT(*) AS IncidentCount FROM suspect
 GROUP BY name
@@ -132,12 +134,12 @@ JOIN suspect s ON s.crimeID=c.crimeID
 WHERE s.name='unknown'
 
 SELECT * FROM crime
-WHERE EXISTS (SELECT 1 FROM crime WHERE incidentType ='homicide')
+WHERE EXISTS (SELECT 1 FROM crime WHERE incidentType='homicide')
 AND NOT EXISTS (SELECT 1 FROM crime WHERE incidentType NOT IN ('homicide','robbery'))
 
 
 SELECT c.crimeID,c.IncidentType,ISNULL(s.name,'No Suspect') AS SuspectName FROM crime c
-LEFT JOIN suspect s ON c.crimeID = s.crimeID
+LEFT JOIN suspect s ON c.crimeID=s.crimeID
 
 SELECT suspectID,name,incidenttype FROM suspect
 JOIN crime ON crime.crimeID=suspect.crimeID
