@@ -131,9 +131,10 @@ SELECT c.CrimeID,c.IncidentType from crime c
 JOIN suspect s ON s.crimeID=c.crimeID
 WHERE s.name='unknown'
 
-SELECT c.* FROM crime c
-WHERE EXISTS (SELECT 1 FROM crime WHERE IncidentType = 'homicide')
-AND NOT EXISTS (SELECT 1 FROM crime WHERE IncidentType NOT IN ('homicide','robbery'))
+SELECT * FROM crime
+WHERE EXISTS (SELECT 1 FROM crime WHERE incidentType ='homicide')
+AND NOT EXISTS (SELECT 1 FROM crime WHERE incidentType NOT IN ('homicide','robbery'))
+
 
 SELECT c.crimeID,c.IncidentType,ISNULL(s.name,'No Suspect') AS SuspectName FROM crime c
 LEFT JOIN suspect s ON c.crimeID = s.crimeID
