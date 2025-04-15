@@ -116,7 +116,6 @@ JOIN suspect s ON c.crimeID=c.crimeID
 JOIN victim v ON s.name=v.name 
 GROUP BY c.crimeID,c.incidentType,c.status;
 
-
 select c.crimeID,c.incidentType,v.name as VictimName,s.name as SuspectName from crime c
 join victim v on c.crimeID=v.crimeID
 join suspect s on c.crimeID=s.crimeID;
